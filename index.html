@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ishwor— To-Do App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <div class="container">
+
+    <header class="header">
+      <div class="logo-area">
+        <span class="logo-icon">✦</span>
+        <h1 class="logo-text">Ishwor-To-Do-App</h1>
+      </div>
+      <div class="stats-bar">
+        <span id="total-count">0 tasks</span>
+        <span class="dot">·</span>
+        <span id="done-count">0 done</span>
+      </div>
+    </header>
+
+    <!-- Add Task -->
+    <div class="add-section">
+      <div class="input-wrap">
+        <span class="input-icon">+</span>
+        <input type="text" id="task-input" placeholder="Type a new task..." maxlength="120"/>
+      </div>
+      <select id="priority-select">
+        <option value="low">🟢 Low</option>
+        <option value="medium" selected>🟡 Medium</option>
+        <option value="high">🔴 High</option>
+      </select>
+      <button id="add-btn" onclick="addTask()">Add Task</button>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <button class="tab active" onclick="filterTasks('all', this)">All</button>
+      <button class="tab" onclick="filterTasks('pending', this)">Pending</button>
+      <button class="tab" onclick="filterTasks('completed', this)">Completed</button>
+    </div>
+
+    <!-- Task List -->
+    <ul class="task-list" id="task-list"></ul>
+    <p class="empty-msg" id="empty-msg">No tasks yet. Add one above ↑</p>
+
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h2 class="modal-title">✏ Edit Task</h2>
+      <input type="text" id="edit-input" placeholder="Update task name..." maxlength="120"/>
+      <select id="edit-priority">
+        <option value="low">🟢 Low</option>
+        <option value="medium">🟡 Medium</option>
+        <option value="high">🔴 High</option>
+      </select>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save" onclick="saveEdit()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
